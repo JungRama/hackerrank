@@ -24,3 +24,52 @@ function minMaxSum(arr) {
     
     console.log(`${Math.min(...sumVal)} ${Math.max(...sumVal)}`)
 }
+
+// timeConversion function
+function timeConversion(s) {
+    const timeFormat = s.substr(s.length-2, 2)
+    const isPM = timeFormat == 'PM'
+    const time = s.split(':')
+    const hour = time[0]
+    const minute = time[1]
+    const second = time[2].replace(timeFormat, '')
+    
+    let timeConverted = null 
+    
+    if(isPM) {
+        const parsedHours = () => {
+            if(parseInt(hour) + 12 >= 24) {
+                return '12'
+            }else {
+                return parseInt(hour) + 12
+            }
+        }
+        
+        timeConverted = `${parsedHours()}:${minute}:${second}`
+        console.log(timeConverted)
+    }else {
+        
+        timeConverted = `${hour == '12' ? '00' : hour}:${minute}:${second}`
+        console.log(timeConverted)
+    }
+    
+    return timeConverted
+}
+
+/*
+ * Complete the 'matchingStrings' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. STRING_ARRAY strings
+ *  2. STRING_ARRAY queries
+ */
+function matchingStrings(strings, queries) {
+    const result = [];
+    queries.forEach((item, index) => {
+        const lengthTotal = strings.filter(_ => _ === item).length
+        result.push(lengthTotal)
+    })
+    
+    return result
+}
