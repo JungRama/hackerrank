@@ -73,3 +73,24 @@ function matchingStrings(strings, queries) {
     
     return result
 }
+
+
+/*
+ * Complete the 'lonelyinteger' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY a as parameter.
+ */
+
+function lonelyinteger(a) {
+    const helpers = []
+    
+    a.forEach((item) => {
+        helpers.push({
+            key: item,
+            total: a.filter(n => item === n).length
+        })
+    })
+    
+    return helpers.filter(item => item.total <= 1)[0].key
+}
